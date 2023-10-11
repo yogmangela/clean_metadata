@@ -27,8 +27,9 @@ resource "aws_lambda_function" "metadata_stripper_function" {
   function_name = "metadata-stripper"
   role          = aws_iam_role.lambda_execution_role.arn
   handler       = "strip_exif.lambda_handler"
-  runtime       = "python3.8"
+  runtime       = "python3.11"
   timeout       = 10
+  layers = [aws_lambda_layer_version.pillow_py311.arn]
 
   environment {
     variables = {
@@ -41,6 +42,13 @@ resource "aws_lambda_function" "metadata_stripper_function" {
 
 }
 
+resource "aws_lambda_layer_version" "pillow_py311" {
+  filename   = "${path.module}/Pillow.zip"
+  layer_name = "pillow-python311"
+  compatible_runtimes = ["python3.11"]
+}
+
+
 resource "aws_lambda_permission" "allow_bucket_a_trigger" {
   statement_id  = "AllowExecutionFromS3"
   action        = "lambda:InvokeFunction"
@@ -50,9 +58,6 @@ resource "aws_lambda_permission" "allow_bucket_a_trigger" {
 
   # depends_on = [ aws_lambda_function.metadata_stripper_function ]
 }
-
-
-
 
 # Create an IAM Role for the Lambda function to assume when executing. Attach a policy that allows reading from Bucket A, writing to Bucket B, and logging.
 

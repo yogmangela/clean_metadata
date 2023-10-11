@@ -99,8 +99,8 @@ resource "aws_iam_policy" "lambda_policy" {
         "s3:ListBucket"
       ],
       "Resource": [
-        "arn:aws:s3:::bucket-a-tzxi7",
-        "arn:aws:s3:::bucket-a-tzxi7/*"
+        "arn:aws:s3:::bucket-a-3xhbq",
+        "arn:aws:s3:::bucket-a-3xhbq/*"
       ]
     },
     {
@@ -111,8 +111,8 @@ resource "aws_iam_policy" "lambda_policy" {
         "s3:ListBucket"
       ],
       "Resource": [
-        "arn:aws:s3:::bucket-b-s791dg",
-        "arn:aws:s3:::bucket-b-s791dg/*"
+        "arn:aws:s3:::bucket-b-7c58h2",
+        "arn:aws:s3:::bucket-b-7c58h2/*"
       ]
     },
     {
@@ -122,8 +122,8 @@ resource "aws_iam_policy" "lambda_policy" {
         "s3:PutObject"
       ],
       "Resource": [
-        "arn:aws:s3:::bucket-b-s791dg",
-        "arn:aws:s3:::bucket-b-s791dg/*"
+        "arn:aws:s3:::bucket-b-7c58h2",
+        "arn:aws:s3:::bucket-b-7c58h2/*"
       ]
     },
     {

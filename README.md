@@ -37,6 +37,8 @@ alias ta="terraform apply"
 
 - automating bucketname ingestion
 
+- Use S3 bucket and DynamoDB for terraform statefile store.
+
 ## Outcome:
 
 It deploys two S3 buckets, two Users with poliocies and Lambda with layers.

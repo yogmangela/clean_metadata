@@ -29,7 +29,7 @@ resource "aws_lambda_function" "metadata_stripper_function" {
   handler       = "strip_exif.lambda_handler"
   runtime       = "python3.11"
   timeout       = 10
-  layers = [aws_lambda_layer_version.pillow_py311.arn]
+  layers        = [aws_lambda_layer_version.pillow_py311.arn]
 
   environment {
     variables = {
@@ -38,13 +38,13 @@ resource "aws_lambda_function" "metadata_stripper_function" {
     }
   }
 
-# depends_on = [ aws_iam_policy.lambda_policy ]
+  # depends_on = [ aws_iam_policy.lambda_policy ]
 
 }
 
 resource "aws_lambda_layer_version" "pillow_py311" {
-  filename   = "${path.module}/Pillow.zip"
-  layer_name = "pillow-python311"
+  filename            = "${path.module}/Pillow.zip"
+  layer_name          = "pillow-python311"
   compatible_runtimes = ["python3.11"]
 }
 

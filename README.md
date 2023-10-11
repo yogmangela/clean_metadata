@@ -39,7 +39,22 @@ alias ta="terraform apply"
 
 ## Outcome:
 
-- currently the 
+It deploys two S3 buckets, two Users with poliocies and Lambda with layers.
+
+- currently the Lambda fuction  resulting in error
+
+``{
+  "errorMessage": "Unable to import module 'strip_exif': cannot import name '_imaging' from 'PIL' (/opt/python/PIL/__init__.py)",
+  "errorType": "Runtime.ImportModuleError",
+  "requestId": "4ff2a5d6-8fc3-4951-97ec-d8b3598a491c",
+  "stackTrace": []
+}``
+
+see below
+
+![package error](error.png)
+
+
 # Yogesh Mangela (Yogs)
 
 

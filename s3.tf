@@ -27,7 +27,7 @@ resource "aws_s3_bucket" "bucket_a" {
 # Create a folder (prefix) inside the bucket
 resource "aws_s3_object" "s3_prefix_a" {
   bucket = aws_s3_bucket.bucket_a.id
-  key = "path/to/images/" # will create sub-folfer called "img"
+  key    = "path/to/images/" # will create sub-folfer called "img"
 }
 
 # Create S3 bucket "bucket_b", Replace with your desired S3 bucket name
@@ -38,6 +38,6 @@ resource "aws_s3_bucket" "bucket_b" {
 # Create a folder (prefix) inside the bucket
 resource "aws_s3_object" "s3_prefix_b" {
   bucket = aws_s3_bucket.bucket_b.id
-  key = "img/" # will create sub-folfer called "img"
+  key    = "img/" # will create sub-folfer called "img"
   # source = "" # Specify local path to upload file from.
 }

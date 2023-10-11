@@ -50,10 +50,6 @@ It deploys two S3 buckets, two Users with poliocies and Lambda with layers.
   "stackTrace": []
 }``
 
-see below
-
-![package error](error.png)
-
 
 # Yogesh Mangela (Yogs)
 

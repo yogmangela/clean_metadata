@@ -1,60 +1,55 @@
-# clean_metadata
-Creates a system that retrieves .jpg files when they are uploaded to the S3 bucket A, removes any exif metadata,  and save them to another S3 bucket B.
+## Requirements
 
-#### Pre-requesite
-- Python 🐍  🐍
-[![Python 3.11](https://img.shields.io/badge/python-3.11-green.svg)](https://www.python.org/downloads/release/python-3110/) 
-- Terraform v1.6.0 
-- AWS user:
-    This repository assumes you have already setup default aws profile. check [aws configure](https://wellarchitectedlabs.com/common/documentation/aws_credentials/)
-- clone this repository and use branch [origin/add_lambda](https://github.com/yogmangela/clean_metadata.git) to deploy resources.
+No requirements.
 
-- Aliases saves time (linux)
-```console
-alias ti="terraform init"
-alias tp="terraform plan"
-alias tv="terraform validate"
-alias tf="terraform fmt"
-alias ta="terraform apply"
-```
+## Providers
 
-## To Create resources
-- run ```ta```  (```terraform init```)
-- run ```tp```  (```terraform plan```)
-- run ```tv```  (```terraform validate```)
-- run ```tf```  (```terraform fmt```) Terraform canonical formating
-- run ```ta```  (```terraform apply```) 
+| Name | Version |
+|------|---------|
+| <a name="provider_archive"></a> [archive](#provider\_archive) | 2.4.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.20.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
 
-- Use terraform output to change the `bucket-b-XXXXX` under `/python/strip_exif.py` on line:23.
-- and in the `lambda.tf` change both buckets `bucket-a-XXXXX` and `bucket-b-XXXXX`
+## Modules
 
+No modules.
 
-## Improvements
+## Resources
 
-- to make it secure add Lambda to [VPC/Subnets](https://github.com/terraform-aws-modules/terraform-aws-lambda/blob/v6.0.1/examples/with-vpc/main.tf)
+| Name | Type |
+|------|------|
+| [aws_iam_policy.lambda_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_policy.policy_a](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_policy.policy_b](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_role.lambda_execution_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy_attachment.lambda_role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_user.user_a](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user) | resource |
+| [aws_iam_user.user_b](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user) | resource |
+| [aws_iam_user_policy_attachment.attach_policy_a](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
+| [aws_iam_user_policy_attachment.attach_policy_b](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
+| [aws_lambda_function.metadata_stripper_function](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function) | resource |
+| [aws_lambda_layer_version.pillow_py311](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_layer_version) | resource |
+| [aws_lambda_permission.allow_bucket_a_trigger](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission) | resource |
+| [aws_s3_bucket.bucket_a](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
+| [aws_s3_bucket.bucket_b](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
+| [aws_s3_bucket_notification.bucket_a_notification](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_notification) | resource |
+| [aws_s3_object.s3_prefix_a](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object) | resource |
+| [aws_s3_object.s3_prefix_b](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object) | resource |
+| [random_string.random-a](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
+| [random_string.random-b](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
+| [archive_file.zip_the_python_code](https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file) | data source |
 
-- Add Security Groups for hardening  
+## Inputs
 
-- automating bucketname ingestion
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_folder_key"></a> [folder\_key](#input\_folder\_key) | This key will be used for creating S3 keys or Subfolders. | `string` | `"img"` | no |
 
-- Use S3 bucket and DynamoDB for terraform statefile store.
+## Outputs
 
-## Outcome:
-
-It deploys two S3 buckets, two Users with poliocies and Lambda with layers.
-
-- currently the Lambda fuction  resulting in error
-
-``{
-  "errorMessage": "Unable to import module 'strip_exif': cannot import name '_imaging' from 'PIL' (/opt/python/PIL/__init__.py)",
-  "errorType": "Runtime.ImportModuleError",
-  "requestId": "4ff2a5d6-8fc3-4951-97ec-d8b3598a491c",
-  "stackTrace": []
-}``
-
-
-# Yogesh Mangela (Yogs)
-
-
-
-
+| Name | Description |
+|------|-------------|
+| <a name="output_bucket_a"></a> [bucket\_a](#output\_bucket\_a) | n/a |
+| <a name="output_bucket_a_prefix"></a> [bucket\_a\_prefix](#output\_bucket\_a\_prefix) | n/a |
+| <a name="output_bucket_b"></a> [bucket\_b](#output\_bucket\_b) | n/a |
+| <a name="output_bucket_b_prefix"></a> [bucket\_b\_prefix](#output\_bucket\_b\_prefix) | n/a |

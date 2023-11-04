@@ -145,6 +145,3 @@
 #   policy_arn = aws_iam_policy.lambda_policy.arn
 #   role       = aws_iam_role.lambda_execution_role.name
 # }
-
-
-

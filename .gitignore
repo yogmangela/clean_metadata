@@ -36,3 +36,4 @@ terraform.rc
 
 # no creds
 *.pem
+password.txt

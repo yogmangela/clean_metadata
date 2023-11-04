@@ -25,7 +25,7 @@ resource "aws_s3_bucket" "bucket_a" {
 }
 
 resource "aws_s3_bucket_versioning" "bucket_a_ver" {
-  bucket = aws_s3_bucket.bucket_a
+  bucket = aws_s3_bucket.bucket_a.id
   versioning_configuration {
     status = "Enabled"
   }
@@ -44,7 +44,7 @@ resource "aws_s3_bucket" "bucket_b" {
 
 # Create a folder (prefix) inside the bucket
 resource "aws_s3_bucket_versioning" "bucket_b_ver" {
-  bucket = aws_s3_bucket.bucket_b
+  bucket = aws_s3_bucket.bucket_b.id
   versioning_configuration {
     status = "Enabled"
   }

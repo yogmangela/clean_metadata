@@ -27,7 +27,7 @@ resource "aws_s3_bucket" "bucket_a" {
 resource "aws_s3_bucket_versioning" "bucket_a_ver" {
   bucket = aws_s3_bucket.bucket_a
   versioning_configuration {
-    status = "Disabled"
+    status = "Enabled"
   }
 }
 
@@ -43,6 +43,14 @@ resource "aws_s3_bucket" "bucket_b" {
 }
 
 # Create a folder (prefix) inside the bucket
+resource "aws_s3_bucket_versioning" "bucket_b_ver" {
+  bucket = aws_s3_bucket.bucket_b
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+
 resource "aws_s3_object" "s3_prefix_b" {
   bucket = aws_s3_bucket.bucket_b.id
   key    = "img/" # will create sub-folfer called "img"

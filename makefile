@@ -28,8 +28,6 @@ tag:   ## Automatic Tagging of Releases
 	@echo "-------------------------------------------"
 	@echo "Running automatic tagging of releases..."
 	@echo "-------------------------------------------"
-	git clone git@github.com:ACCOUNT_NAME/semantic-image-tagging.git
-	bash ./semantic-image-tagging/git-tag/git_update.sh
 
 .PHONY: lint
 lint: ## Dockerfile lint

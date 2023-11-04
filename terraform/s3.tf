@@ -24,6 +24,13 @@ resource "aws_s3_bucket" "bucket_a" {
   bucket = "bucket-a-${random_string.random-a.result}"
 }
 
+resource "aws_s3_bucket_versioning" "bucket_a_ver" {
+  bucket = aws_s3_bucket.bucket_a
+  versioning_configuration {
+    status = "Disabled"
+  }
+}
+
 # Create a folder (prefix) inside the bucket
 resource "aws_s3_object" "s3_prefix_a" {
   bucket = aws_s3_bucket.bucket_a.id

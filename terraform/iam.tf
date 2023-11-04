@@ -42,7 +42,7 @@ resource "aws_iam_policy" "policy_b" {
       {
         Action   = ["s3:GetObject", "s3:ListBucket"],
         Effect   = "Allow",
-        Resource = [aws_s3_bucket.bucket_b.arn, "${aws_s3_bucket.bucket_b.arn}/*"],
+        Resource = [aws_s3_bucket.bucket_b.arn, "${aws_s3_bucket.bucket_b.arn}"],
       },
     ],
   })

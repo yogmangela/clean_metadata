@@ -30,7 +30,14 @@ resource "aws_s3_bucket_versioning" "bucket_a_ver" {
     status = "Enabled"
   }
 }
+resource "aws_s3_bucket_public_access_block" "bucket_a_pub_access" {
+  bucket = aws_s3_bucket.bucket_a.id
 
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
 # Create a folder (prefix) inside the bucket
 resource "aws_s3_object" "s3_prefix_a" {
   bucket = aws_s3_bucket.bucket_a.id
@@ -42,6 +49,15 @@ resource "aws_s3_bucket" "bucket_b" {
   bucket = "bucket-b-${random_string.random-b.result}"
 }
 
+
+resource "aws_s3_bucket_public_access_block" "bucket_b_pub_access" {
+  bucket = aws_s3_bucket.bucket_b.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
 # Create a folder (prefix) inside the bucket
 resource "aws_s3_bucket_versioning" "bucket_b_ver" {
   bucket = aws_s3_bucket.bucket_b.id

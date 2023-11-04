@@ -10,6 +10,10 @@ resource "aws_iam_user" "user_b" {
   name = "user-b"
 }
 
+resource "aws_iam_user" "user_c" {
+  name = "user-c"
+}
+
 # Create bucket policy for User A with Full access Replace with your desired policies here
 resource "aws_iam_policy" "policy_a" {
   name        = "policy-a"

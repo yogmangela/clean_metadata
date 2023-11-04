@@ -9,7 +9,7 @@ repos:
     - id: terraform_wrapper_module_for_each
     - id: terraform_tfsec
     - id: terrascan
--   repo: https://github.com/psf/black
+# -   repo: https://github.com/psf/black
 #     rev: 22.10.0
 #     hooks:
 #     -   id: black

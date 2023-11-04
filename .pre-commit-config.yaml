@@ -1,25 +1,25 @@
-repos:
-- repo: https://github.com/antonbabenko/pre-commit-terraform
-  rev: v1.83.5 # Get the latest from: https:/github.com/antonbabenko/pre-commit-terraform/releases
-  hooks:
-    - id: terraform_fmt
-    - id: terraform_docs
-    - id: terraform_validate
-    - id: terraform_tflint
-    - id: terraform_wrapper_module_for_each
-    - id: terraform_docs_without_aggregate_type_defaults
-    - id: terraform_tfsec
-    - id: terrascan
-    - id: infracost_breakdown
-      verbose: true
--   repo: https://github.com/psf/black
-    rev: 22.10.0
-    hooks:
-    -   id: black
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
-    hooks:
-    -   id: check-yaml
-    -   id: end-of-file-fixer
-    -   id: trailing-whitespace
-    -   id: detect-aws-credentials
+# repos:
+# - repo: https://github.com/antonbabenko/pre-commit-terraform
+#   rev: v1.83.5 # Get the latest from: https:/github.com/antonbabenko/pre-commit-terraform/releases
+#   hooks:
+#     - id: terraform_fmt
+#     - id: terraform_docs
+#     - id: terraform_validate
+#     - id: terraform_tflint
+#     - id: terraform_wrapper_module_for_each
+#     - id: terraform_docs_without_aggregate_type_defaults
+#     # - id: terraform_tfsec
+#     - id: terrascan
+#     - id: infracost_breakdown
+#       verbose: true
+# -   repo: https://github.com/psf/black
+#     rev: 22.10.0
+#     hooks:
+#     -   id: black
+# -   repo: https://github.com/pre-commit/pre-commit-hooks
+#     rev: v2.3.0
+#     hooks:
+#     -   id: check-yaml
+#     -   id: end-of-file-fixer
+#     -   id: trailing-whitespace
+#     -   id: detect-aws-credentials

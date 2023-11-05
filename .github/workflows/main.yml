@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: docker pre-commit image pull
-        run: TAG=latest && docker pull ghcr.io/antonbabenko/pre-commit-terraform:$TAG
+        run: docker pull ghcr.io/antonbabenko/pre-commit-terraform:latest
         shell: bash
       - name: docker pre-commit run
         run:  docker run --name pre-commit-terraform ghcr.io/antonbabenko/pre-commit-terraform:latest

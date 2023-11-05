@@ -14,15 +14,26 @@ jobs:
       - name: docker pre-commit image pull
         run: docker pull ghcr.io/antonbabenko/pre-commit-terraform:latest
         shell: bash
-      - name: docker pre-commit run
-        run:  docker run --name pre-commit-terraform ghcr.io/antonbabenko/pre-commit-terraform:latest
-        shell: bash
-      - name:  pre-commit
-        run: docker image ls && cd terraform && ls -al
-        shell: bash
-      - name:  pre-commit
-        run: pre-commit run -a
-        shell: bash      
+      - name: install pre-commit
+        run: git clone git@github.com:antonbabenko/pre-commit-terraform.git && cd pre-commit-terraform
+      - name:  list directory pre-commit
+        run: ls -al
+        shell: bash 
+        # docker build -t pre-commit-terraform --build-arg INSTALL_ALL=true .
+      # - name:  pre-commit
+      #   run: docker image ls 
+      #   shell: bash
+      # - name:  pre-commit
+      #   run: cd terraform && ls -al
+      #   shell: bash
+      # - name: docker pre-commit run
+      #   run:  docker run --name pre-commit-terraform ghcr.io/antonbabenko/pre-commit-terraform:latest
+      #   shell: bash
+      # - name:  pre-commit
+      #   run: pre-commit run -a
+      #   shell: bash 
+        
+        
         # - name: Login to Docker Hub 
       #  uses: docker/login-action@v3
       #   with:

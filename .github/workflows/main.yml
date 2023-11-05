@@ -13,8 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - uses: pre-commit/action@v3.0.0
-        with:
-          extra_args: cd terraform && ls -al
+      run: ls -al
       # - name: docker pre-commit image pull
       #   run: docker pull ghcr.io/antonbabenko/pre-commit-terraform:latest
       #   shell: bash

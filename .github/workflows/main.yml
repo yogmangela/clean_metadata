@@ -14,14 +14,17 @@ jobs:
       - name: docker pre-commit image pull
         run: TAG=latest && docker pull ghcr.io/antonbabenko/pre-commit-terraform:$TAG
         shell: bash
-      # - name: docker pre-commit build
-      #   run:  docker build -t pre-commit-terraform --build-arg INSTALL_ALL=true .
-      #   shell: bash
-      - name:  pre-commit
-        run: cd terraform && ls -al && pre-commit run -a
+      - name: docker pre-commit run
+        run:  docker run --name pre-commit-terraform ghcr.io/antonbabenko/pre-commit-terraform:latest
         shell: bash
-      # - name: Login to Docker Hub 
-      #   uses: docker/login-action@v3
+      - name:  pre-commit
+        run: cd terraform && ls -al
+        shell: bash
+      - name:  pre-commit
+        run: pre-commit run -a
+        shell: bash      
+        # - name: Login to Docker Hub 
+      #  uses: docker/login-action@v3
       #   with:
       #     username: ${{ secrets.DOCKER_USERNAME }}
       #     password: ${{ secrets.DOCKERHUB_TOKEN }}

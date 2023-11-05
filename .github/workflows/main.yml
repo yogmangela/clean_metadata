@@ -26,8 +26,7 @@ jobs:
           --build-arg TFLINT_VERSION=0.31.0 \
           --build-arg TFSEC_VERSION=latest \
           --build-arg TFUPDATE_VERSION=latest \
-          --build-arg HCLEDIT_VERSION=latest \
-          .
+          --build-arg HCLEDIT_VERSION=latest \ .
         shell: bash
       - name:  pre-commit
         run: cd terraform && ls -al && pre-commit run -a

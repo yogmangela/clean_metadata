@@ -11,6 +11,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: docker pre-commit image pull
+        run: TAG=latest && docker pull ghcr.io/antonbabenko/pre-commit-terraform:$TAG
+        shell: bash
+      - name: docker pre-commit build
+        run: docker build -t pre-commit-terraform \
+          --build-arg PRE_COMMIT_VERSION=latest \
+          --build-arg TERRAFORM_VERSION=latest \
+          --build-arg CHECKOV_VERSION=2.0.405 \
+          --build-arg INFRACOST_VERSION=latest \
+          --build-arg TERRAFORM_DOCS_VERSION=0.15.0 \
+          --build-arg TERRAGRUNT_VERSION=latest \
+          --build-arg TERRASCAN_VERSION=1.10.0 \
+          --build-arg TFLINT_VERSION=0.31.0 \
+          --build-arg TFSEC_VERSION=latest \
+          --build-arg TFUPDATE_VERSION=latest \
+          --build-arg HCLEDIT_VERSION=latest \
+          .
+        shell: bash
       - name:  pre-commit
         run: cd terraform && ls -al && pre-commit run -a
         shell: bash

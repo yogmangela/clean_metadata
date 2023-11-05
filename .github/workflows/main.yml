@@ -14,7 +14,7 @@ jobs:
 
       - uses: pre-commit/action@v3.0.0
         with:
-          extra_args: terraform_fmt --all-files
+          extra_args: cd terraform && terraform_fmt --all-files
       # - name: docker pre-commit image pull
       #   run: docker pull ghcr.io/antonbabenko/pre-commit-terraform:latest
       #   shell: bash

@@ -1,19 +1,33 @@
-
-name: ci
 on:
+  pull_request:
   push:
-    branches:
-      - main
-      - add-precommit-hooks
+    branches: [main, add-precommit-hooks]
+
 jobs:
-  build:
+  main:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+    - name: self test action
+      uses: ./
 
-      - uses: pre-commit/action@v3.0.0
-      run: ls -al
+
+# name: ci
+# on:
+#   push:
+#     branches:
+#       - main
+#       - add-precommit-hooks
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
+
+#       - uses: pre-commit/action@v3.0.0
+#       run: ls -al
       # - name: docker pre-commit image pull
       #   run: docker pull ghcr.io/antonbabenko/pre-commit-terraform:latest
       #   shell: bash

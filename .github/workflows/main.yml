@@ -15,9 +15,7 @@ jobs:
         run: TAG=latest && docker pull ghcr.io/antonbabenko/pre-commit-terraform:$TAG
         shell: bash
       - name: docker pre-commit build
-        run: git clone git@github.com:antonbabenko/pre-commit-terraform.git && cd cd pre-commit-terraform \
-          docker build -t pre-commit-terraform --build-arg INSTALL_ALL=true .
-          
+        run:  docker build -t pre-commit-terraform --build-arg INSTALL_ALL=true .
         shell: bash
       - name:  pre-commit
         run: cd terraform && ls -al && pre-commit run -a

@@ -15,9 +15,7 @@ jobs:
       - name: terraform pre-commit hooks
         uses: pre-commit/action@v3.0.0
         with:
-          run: cd terraform && la -al
-          extra_args: terraform_fmt --all-files
-          shell: bash
+          extra_args: terraform_fmt  terraform_validate --all-files
       #   run: cd terraform && ls -al
       #   shell: bash
       # - name: docker pre-commit run

@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call a Bash Script
-        run: cd terraform && ls -al
+        run: ls -al
   pre-commit:
     runs-on: ubuntu-latest
     steps:
@@ -22,6 +22,11 @@ jobs:
         uses: pre-commit/action@v3.0.0
         with:
           extra_args: terraform_fmt  --all-file
+      - name: terraform validate pre-commit hooks
+        uses: pre-commit/action@v3.0.0
+        with:
+          extra_args: terraform_validate  --all-file
+    
 
       #   shell: bash
       # - name: docker pre-commit run

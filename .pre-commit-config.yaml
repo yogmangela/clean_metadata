@@ -3,5 +3,7 @@ repos:
   rev: v1.83.5
   hooks:
     - id: terraform_fmt
+      run: cd terraform && ls -al
+      shell: bash
       args:
       - --args=-write=true

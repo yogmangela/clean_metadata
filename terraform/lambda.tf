@@ -1,3 +1,28 @@
+resource "aws_lambda_function" "image_processing_lambda" {
+  function_name = "imageProcessingLambda"
+  role          = aws_iam_role.lambda_execution_role.arn
+  handler       = "lambda_function.lambda_handler"
+  runtime       = "python3.8"
+}
+
+resource "aws_iam_role" "lambda_execution_role" {
+  name = "lambda_execution_role"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      }
+    }
+  ]
+}
+EOF
+}
 
 # # 2. Create an S3 event trigger for Bucket A to invoke the Lambda function when a .jpg file is uploaded.
 

@@ -1,3 +1,35 @@
+resource "aws_iam_role_policy_attachment" "lambda_execution_role_policy" {
+  policy_arn = "arn:aws:iam::aws:policy/AWSLambdaExecute"
+  role       = aws_iam_role.lambda_execution_role.name
+}
+
+data "archive_file" "lambda_zip" {
+  type        = "zip"
+  source_dir  = "lambda_function"
+  output_path = "lambda_function.zip"
+}
+
+resource "aws_lambda_permission" "allow_s3_trigger" {
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.image_processing_lambda.function_name
+  principal     = "s3.amazonaws.com"
+
+  source_arn = aws_s3_bucket.bucket_a.arn
+}
+
+resource "aws_s3_bucket_notification" "bucket_a_notification" {
+  bucket = aws_s3_bucket.bucket_a.id
+
+  lambda_function {
+    lambda_function_arn = aws_lambda_function.image_processing_lambda.arn
+    events              = ["s3:ObjectCreated:*"]
+    filter_prefix       = "images/"
+    filter_suffix       = ".jpg"
+  }
+}
+
+
+
 
 
 # Create IAM User "user_a", Replace with your desired username
